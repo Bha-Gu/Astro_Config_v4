@@ -49,21 +49,29 @@ return {
         H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
         ["<Leader>gg"] = {
           function()
-            local worktree = require("astronvim.utils.git").file_worktree()
+            local astro = require "astrocore"
+            local worktree = astro.file_worktree()
             local flags = worktree and (" -w=%s -d=%s"):format(worktree.toplevel, worktree.gitdir) or ""
-            utils.toggle_term_cmd "gitui -t=new.ron"
+            astro.toggle_term_cmd("gitui -t=new.ron" .. flags)
           end,
           desc = "ToggleTerm gitui user",
         },
         ["<Leader>tl"] = {
           function()
-            local worktree = require("astronvim.utils.git").file_worktree()
+            local astro = require "astrocore"
+            local worktree = astro.file_worktree()
             local flags = worktree and (" -w=%s -d=%s"):format(worktree.toplevel, worktree.gitdir) or ""
-            utils.toggle_term_cmd "gitui -t=new.ron"
+            astro.toggle_term_cmd("gitui -t=new.ron" .. flags)
           end,
           desc = "ToggleTerm gitui user",
         },
-        ["<Leader>tr"] = { function() utils.toggle_term_cmd "irust" end, desc = "ToggleTerm Rust" },
+        ["<Leader>tr"] = {
+          function()
+            local astro = require "astrocore"
+            astro.toggle_term_cmd "irust"
+          end,
+          desc = "ToggleTerm Rust",
+        },
 
         -- mappings seen under group name "Buffer"
         ["<Leader>bD"] = {

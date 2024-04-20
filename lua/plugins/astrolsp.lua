@@ -39,7 +39,7 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-"rust_analyzer"
+      "rust_analyzer",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -49,6 +49,12 @@ return {
           ["rust-analyzer"] = {
             checkOnSave = {
               command = "clippy",
+            },
+            inlayHints = {
+              typeHints = true,
+              parameterHints = true,
+              chainingHints = true,
+              maxLength = 40,
             },
             procMacro = {
               ignored = {
